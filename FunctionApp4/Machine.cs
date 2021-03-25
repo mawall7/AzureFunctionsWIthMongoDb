@@ -10,7 +10,6 @@ namespace FunctionApp4
         public class Machine
         {
             [BsonId]
-        
             public string Id {get; set;}
 
             [BsonElement("Name")]
