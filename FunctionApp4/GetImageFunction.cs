@@ -26,7 +26,7 @@ namespace FunctionApp4
             }
             catch(FileNotFoundException e) 
             {
-                result = new BadRequestResult();
+                result = new StatusCodeResult(StatusCodes.Status500InternalServerError);
             }
             return result; 
         }
