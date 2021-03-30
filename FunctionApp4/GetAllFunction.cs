@@ -1,6 +1,9 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using AzStorageClassLibrary;
+using FunctionApp4.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
@@ -43,8 +46,9 @@ namespace FunctionApp4
 
             try
             {
-                Result= MaCollection.Find(m => true).ToList();
                 
+               Result= MaCollection.Find(m => true).ToList();
+
             }
             catch(Exception e)
             {

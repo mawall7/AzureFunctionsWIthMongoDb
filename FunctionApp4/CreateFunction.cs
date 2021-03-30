@@ -36,7 +36,7 @@ namespace FunctionApp4
             string name = req.Query["name"];
             bool result = true;
             string id = Guid.NewGuid().ToString();
-            DateTime date = DateTime.Now;        
+            string date = DateTime.Now.ToString();        
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             Machine input = JsonConvert.DeserializeObject<Machine>(requestBody);
             //ICollection<ValidationResult> ErrorList = null;
@@ -53,7 +53,7 @@ namespace FunctionApp4
                     if(input.Name!= null)
                     {
                         input.Id = id;
-                        input.TimeCreated = DateTime.Now;
+                        input.TimeCreated = date;
                         Db.MaCollection.InsertOne(input);
                         Result = new OkObjectResult($"Inserted Machine Successfull{requestBody}");
                     }

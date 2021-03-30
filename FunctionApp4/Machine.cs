@@ -16,6 +16,6 @@ namespace FunctionApp4
             //[Required]
             public string Name { get; set; }
 
-            public DateTime TimeCreated { get; set; }
+            public string TimeCreated { get; set; }
         }
 }

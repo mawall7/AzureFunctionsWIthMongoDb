@@ -28,7 +28,7 @@ namespace FunctionApp4
 
         [FunctionName("Function5")]
         public  async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route ="LastItem")] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route ="LastItem")] HttpRequest req,
             ILogger log)
         {
             log.LogInformation("C# HTTP trigger function processed a request.");

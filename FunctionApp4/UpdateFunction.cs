@@ -23,10 +23,10 @@ namespace FunctionApp4
 
         }
 
-        [FunctionName("Function3")]
+        [FunctionName("UpdateFunction")]
         public async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Function, "put", Route = "update/{Id}")] HttpRequest req,
-            ILogger log, string id)
+            [HttpTrigger(AuthorizationLevel.Function, "patch", Route="Update/{Id}")] HttpRequest req,
+            ILogger log, string Id)
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
 
@@ -35,8 +35,8 @@ namespace FunctionApp4
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             try {
                     Machine updatedItem = JsonConvert.DeserializeObject<Machine>(requestBody);
-                    updatedItem.Id = id;
-                    var ReplacedItem = Db.MaCollection.ReplaceOne(m=> m.Id == id,updatedItem);
+                    updatedItem.Id = Id;
+                    var ReplacedItem = Db.MaCollection.ReplaceOne(m=> m.Id == Id,updatedItem);
 
 
                 if (ReplacedItem.MatchedCount == 0)
@@ -45,7 +45,7 @@ namespace FunctionApp4
                 }
                 else
                 {
-                    var data = Db.MaCollection.Find(m => m.Id == id).FirstOrDefault();
+                    var data = Db.MaCollection.Find(m => m.Id == Id).FirstOrDefault();
                     var jsondata = JsonConvert.SerializeObject(data);
                     Result = new OkObjectResult($"Update of an item: {jsondata}, was successfull");
                 }
